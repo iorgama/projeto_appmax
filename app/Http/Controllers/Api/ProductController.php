@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\StoreProductFormRequest;
+use App\Http\Requests\UpdateProductFormRequest;
 
 class ProductController extends Controller
 {
@@ -36,5 +37,24 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json(['Sucess' => true], 204);
+    }
+
+    public function updateAmount(UpdateProductFormRequest $request, $id)
+    {
+        if (!$product = $this->product->find($id)) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+        if ($product->amount >= $request->amount) {
+            $request->merge([
+                'amount' => $product->amount - $request->amount,
+            ]);
+        } else {
+            return response()->json(['error' => 'There is not enough stock to be removed.'], 422);
+        }
+
+        $product->update($request->all());
+
+        return response()->json($product);
     }
 }
