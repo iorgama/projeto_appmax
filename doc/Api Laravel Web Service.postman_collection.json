@@ -1,0 +1,521 @@
+{
+	"info": {
+		"_postman_id": "c1d0f5e6-8317-4a38-804c-b858d10dff50",
+		"name": "Api Laravel Web Service",
+		"description": "# Apresentação\n\nDocumentação para utilização da api.\n\n# Autenticação\n\nPor enquanto não é necessário utilizar autenticação.\n\n# Códigos\n\n**201 – Created**\n\nRequisição foi bem sucedida e um novo recurso foi criado\n\n**400 – Bad Request**\n\nDados enviados de forma incorreta ou fora do padrão\n\n**403 – Forbidden**\n\nSem autorização suficiente para acessar o recurso desejado\n\n**422 – Unprocessable Entity**\n\nCódigo que indica algum erro de validação.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Listar todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTYzNDYwNzYsImV4cCI6MTYxNjM0OTY3NiwibmJmIjoxNjE2MzQ2MDc2LCJqdGkiOiJQOTBMdHg1bzV1d1RqZ2ZUIiwic3ViIjo1MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.7hf6S1W_F7MLvUxiHtFNizCRh7R3eTpsMVZQkd_Lmy8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/produtos",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar todos os produtos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/produtos",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"produtos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"description\": \"Notebook\",\r\n        \"brand\": \"Dell\",\r\n        \"model\": \"Alienware\",\r\n        \"color\": \"Cinza\",\r\n        \"amount\": 22,\r\n        \"sku\": \"NOTDALCI\",\r\n        \"created_at\": \"2021-03-21T05:25:32.000000Z\",\r\n        \"updated_at\": \"2021-03-21T14:42:35.000000Z\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"description\": \"Celular\",\r\n        \"brand\": \"Samsung\",\r\n        \"model\": \"S21 Plus\",\r\n        \"color\": \"Azul\",\r\n        \"amount\": 5,\r\n        \"sku\": \"CELSS2AZ\",\r\n        \"created_at\": \"2021-03-21T05:26:51.000000Z\",\r\n        \"updated_at\": \"2021-03-21T05:26:51.000000Z\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"description\": \"Fone de ouvido\",\r\n        \"brand\": \"anker\",\r\n        \"model\": \"q30\",\r\n        \"color\": \"preto\",\r\n        \"amount\": 5,\r\n        \"sku\": \"FONAQ3PR\",\r\n        \"created_at\": \"2021-03-21T03:14:10.000000Z\",\r\n        \"updated_at\": \"2021-03-21T03:14:10.000000Z\"\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "Remover um produto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/remover-produto/6",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"remover-produto",
+								"6"
+							]
+						},
+						"description": "Responsável por remover um produto"
+					},
+					"response": [
+						{
+							"name": "Remover um produto que não existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/remover-produto/123",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"remover-produto",
+										"123"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"error\": \"Not found\"\r\n}"
+						},
+						{
+							"name": "Remover um produto existente",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/remover-produto/5",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"remover-produto",
+										"5"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Cadastrar produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/adicionar-produtos?description=&brand=&model=&color=&amount=&sku=",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"adicionar-produtos"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "",
+									"description": "descrição "
+								},
+								{
+									"key": "brand",
+									"value": "",
+									"description": "fabrincate"
+								},
+								{
+									"key": "model",
+									"value": "",
+									"description": "modelo"
+								},
+								{
+									"key": "color",
+									"value": "",
+									"description": "cor"
+								},
+								{
+									"key": "amount",
+									"value": "",
+									"description": "quantidade"
+								},
+								{
+									"key": "sku",
+									"value": "",
+									"description": "sku"
+								}
+							]
+						},
+						"description": "Responsável por cadastrar produto"
+					},
+					"response": [
+						{
+							"name": "Cadastrar produto com um sku que não existe no banco",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/adicionar-produtos?description=Celular&brand=Samsung&model=Note 20&color=lilás&amount=10&sku=CELSNOLI",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"adicionar-produtos"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "Celular"
+										},
+										{
+											"key": "brand",
+											"value": "Samsung"
+										},
+										{
+											"key": "model",
+											"value": "Note 20"
+										},
+										{
+											"key": "color",
+											"value": "lilás"
+										},
+										{
+											"key": "amount",
+											"value": "10"
+										},
+										{
+											"key": "sku",
+											"value": "CELSNOLI"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"description\": \"Celular\",\r\n    \"brand\": \"Samsung\",\r\n    \"model\": \"Note 20\",\r\n    \"color\": \"lilás\",\r\n    \"amount\": \"10\",\r\n    \"sku\": \"CELSNOLI\",\r\n    \"updated_at\": \"2021-03-21T03:53:43.000000Z\",\r\n    \"created_at\": \"2021-03-21T03:53:43.000000Z\",\r\n    \"id\": 5\r\n}"
+						},
+						{
+							"name": "Cadastrar produto com um sku que existe no banco",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/adicionar-produtos?description=Celular&brand=Samsung&model=Note 20&color=lilás&amount=10&sku=CELSNOLI",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"adicionar-produtos"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "Celular"
+										},
+										{
+											"key": "brand",
+											"value": "Samsung"
+										},
+										{
+											"key": "model",
+											"value": "Note 20"
+										},
+										{
+											"key": "color",
+											"value": "lilás"
+										},
+										{
+											"key": "amount",
+											"value": "10"
+										},
+										{
+											"key": "sku",
+											"value": "CELSNOLI"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"The given data was invalid.\",\r\n    \"errors\": {\r\n        \"sku\": [\r\n            \"The sku has already been taken.\"\r\n        ]\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Baixar produtos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/baixar-produtos/1?amount=3",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"baixar-produtos",
+								"1"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "3"
+								}
+							]
+						},
+						"description": "Responsável por atualizar a quantidade do produto"
+					},
+					"response": [
+						{
+							"name": "Baixar produtos com estoque insuficiente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/baixar-produtos /2?amount=2000",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"baixar-produtos ",
+										"2"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "2000",
+											"description": "sku"
+										}
+									]
+								}
+							},
+							"code": 422,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\"error\":\"There is not enough stock to be removed.\"}"
+						},
+						{
+							"name": "Baixar produtos com estoque suficiente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/baixar-produtos /2?amount=5",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"baixar-produtos ",
+										"2"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\"id\":1,\"description\":\"Notebook\",\"brand\":\"Dell\",\"model\":\"Alienware\",\"color\":\"Cinza\",\"amount\":22,\"sku\":\"NOTDALCI\",\"created_at\":\"2021-03-21T05:25:32.000000Z\",\"updated_at\":\"2021-03-21T14:42:35.000000Z\"}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://laravel-web-service.local/api/auth?email=admin@admin.com.br&password=123456",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"auth"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "admin@admin.com.br"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								}
+							]
+						},
+						"description": "Responsável por realizar o login"
+					},
+					"response": []
+				}
+			],
+			"description": "#Nome\n\nProduto\n\n#Descrição\n\nEstá pasta representa um objeto do tipo Produto na documentação da Api.\n\n#Campos\n\nObrigatórios:\nDescription\nBrand\nModel\nColor\nAmount\nSku\n\nObservação: A sku deve ser gerada a partir dos três primeiros caracteres do campo description + primeiro caractere do campo brand + dois primeiros caracteres do campo model + dois primeiros caracteres do campo color.\n\nExemplo: \nDescription: Notebook\nBrand: Dell\nModel: Alienware\nColor: Cinza\n\nNOT + D + AL + CI = NOTDALCI"
+		}
+	]
+}
