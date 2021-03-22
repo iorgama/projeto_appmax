@@ -16,10 +16,16 @@ class InventoryController extends Controller
         $this->inventory = $inventory;
     }
 
+    //Responsible for registering our inventory movement
     public function store(StoreInventoryFormRequest $request)
     {
         $product = Product::find($request->product_id);
         $amount = $product->getAmount();
+
+        //
+        $request->merge([
+            'type' => strtoupper($request->type)
+        ]);
 
         if ($request->type === 'S' && $amount < $request->amount) {
             return response()->json(['error' => 'There is not enough stock to be removed.'], 422);
@@ -29,6 +35,7 @@ class InventoryController extends Controller
         return response()->json($inventory, 201);
     }
 
+    //Responsible for returning the quantity of products in the inventory.
     public function amountProduct($id)
     {
         // $inventories = DB::table('inventories')
@@ -43,7 +50,7 @@ class InventoryController extends Controller
         //     )->where('product_id', $id)
         //     ->get();
 
-        $product = Product::find(1);
+        $product = Product::find($id);
         $amount = $product->getAmount();
 
         return response()->json(['amount' => $amount]);

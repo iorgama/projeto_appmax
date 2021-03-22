@@ -16,12 +16,15 @@ class ProductController extends Controller
     {
         $this->product = $product;
     }
-    public function index()
+
+    //Responsible for returning our products.
+    public function getProducts()
     {
         $products = $this->product::all();
         return response()->json($products);
     }
 
+    //Responsible for registering our products.
     public function store(StoreProductFormRequest $request)
     {
         $product = $this->product->create($request->all());

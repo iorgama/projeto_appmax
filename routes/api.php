@@ -15,7 +15,7 @@ Route::group([
   //users
   Route::get('/usuario', [AuthApiController::class, 'getAuthenticatedUser']);
   //products
-  Route::get('/produtos', [ProductController::class, 'index']);
+  Route::get('/produtos', [ProductController::class, 'getProducts']);
   Route::post('/adicionar-produtos', [ProductController::class, 'store']);
   // Route::delete('/remover-produto/{id}', [ProductController::class, 'destroy']);
   //inventory

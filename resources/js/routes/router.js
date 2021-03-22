@@ -6,7 +6,7 @@ import ProductsComponent from "../components/admin/pages/products/ProductsCompon
 import ReportComponent from "../components/admin/pages/reports/ReportComponent";
 import AdminComponent from "../components/admin/AdminComponent";
 import AddProductsComponent from "../components/admin/pages/products/AddProductsComponent";
-import InventoryProductComponent from "../components/admin/pages/products/InventoryProductComponent";
+import InventoryProductComponent from "../components/admin/pages/inventories/InventoryProductComponent";
 import LoginComponent from "../components/admin/pages/login/LoginComponent";
 
 Vue.use(VueRouter);

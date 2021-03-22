@@ -24,7 +24,7 @@
 
 <script>
 export default {  
-  mounted() {
+  created() {
     this.$store
       .dispatch("amountProduct", {id: this.id});
   },
@@ -40,7 +40,7 @@ export default {
   data(){
     return{
       formData:{
-        amount: '', 
+        amount: 0, 
         type: 'E' 
       }    
     }
@@ -52,9 +52,13 @@ export default {
   },
    methods: {
     onSubmit(){
-      this.$store.dispatch('storeInventory', {...this.formData, product_id: this.id})
-      .then(() => this.$router.push({name: 'admin.products'})) 
-      .catch();
+      if(this.formData.type === 'S' && this.formData.amount > this.$store.state.inventories.amount){
+        alert("There is not enough stock to be removed.")
+      }else{
+        this.$store.dispatch('storeInventory', {...this.formData, product_id: this.id})
+        .then(() => this.$router.push({name: 'admin.products'})) 
+        .catch();
+      }
     }
   },
 }
