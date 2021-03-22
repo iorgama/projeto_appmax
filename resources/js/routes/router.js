@@ -3,10 +3,10 @@ import VueRouter from "vue-router";
 
 import store from "../vuex/store";
 import ProductsComponent from "../components/admin/pages/products/ProductsComponent";
-import DashboardComponent from "../components/admin/pages/dashboard/DashboardComponent";
+import ReportComponent from "../components/admin/pages/reports/ReportComponent";
 import AdminComponent from "../components/admin/AdminComponent";
 import AddProductsComponent from "../components/admin/pages/products/AddProductsComponent";
-import EditAmountProductComponent from "../components/admin/pages/products/EditAmountProductComponent";
+import InventoryProductComponent from "../components/admin/pages/products/InventoryProductComponent";
 import LoginComponent from "../components/admin/pages/login/LoginComponent";
 
 Vue.use(VueRouter);
@@ -35,9 +35,9 @@ const routes = [
                 meta: { auth: true }
             },
             {
-                path: "products/:id/edit-amount",
-                component: EditAmountProductComponent,
-                name: "admin.products.editamount",
+                path: "products/:id/inventory",
+                component: InventoryProductComponent,
+                name: "admin.products.inventory",
                 props: true,
                 meta: { auth: true },
                 beforeEnter: (to, from, next) => {
@@ -50,9 +50,9 @@ const routes = [
                 }
             },
             {
-                path: "dashboard",
-                component: DashboardComponent,
-                name: "admin.dashboard"
+                path: "report",
+                component: ReportComponent,
+                name: "admin.report"
             }
         ]
     }

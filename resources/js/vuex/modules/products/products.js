@@ -32,20 +32,6 @@ export default {
                         reject(errors);
                     });
             });
-        },
-
-        editAmountProduct(context, params) {
-            const { amount } = params;
-            return new Promise((resolve, reject) => {
-                httpService
-                    .put(`/baixar-produtos/${params.id}`, { amount })
-                    .then(response => {
-                        resolve();
-                    })
-                    .catch(errors => {
-                        reject(errors);
-                    });
-            });
         }
     },
     getters: {

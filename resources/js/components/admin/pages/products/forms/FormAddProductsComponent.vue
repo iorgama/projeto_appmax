@@ -14,9 +14,6 @@
         <label for="fcolor">Cor</label>
         <input type="text" id="fcolor" v-model="formData.color">
 
-        <label for="famount">Quantidade</label>
-        <input type="text" id="famount" v-model="formData.amount">
-        
         <label for="fsku">SKU</label>
         <input type="text" id="fsku" :value="sku" readonly>     
         <small> A SKU é gerada a partir dos três primeiros caracteres da descrição do produto mais o primeiro caractere do fabricante mais os dois primeiros caracteres do modelo e por último os dois primeiros caracteres da cor.</small>
@@ -46,8 +43,7 @@ export default {
             description: '',
             brand: '',
             model: '',
-            color: '',
-            amount: ''  
+            color: ''
           }
         }
       }    

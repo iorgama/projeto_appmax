@@ -9,7 +9,6 @@
         <th>Fabricante</th>
         <th>Modelo</th>
         <th>Cor</th>
-        <th>Quantidade</th>
         <th>SKU</th>
         <th width="100">AÇÕES</th>
       </thead>
@@ -19,9 +18,8 @@
           <td> {{ product.brand}} </td>
           <td> {{ product.model}} </td>
           <td> {{ product.color}} </td>
-          <td> {{ product.amount}} </td>
           <td> {{ product.sku}} </td>
-          <td> <router-link :to="{name: 'admin.products.editamount', params:{id: product.id}}"> Baixar Produto</router-link>
+          <td> <router-link :to="{name: 'admin.products.inventory', params:{id: product.id}}"> Entrada/Saída</router-link>
           </td>
         </tr>
       </tbody>

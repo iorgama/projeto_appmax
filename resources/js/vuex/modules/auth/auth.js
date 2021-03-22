@@ -28,7 +28,7 @@ export default {
     actions: {
         async login(context, params) {
             try {
-                const response = await httpService.post("/auth", params);
+                const response = await httpService.post("/login", params);
                 const { token, user } = response.data;
                 context.commit("AUTH_USER_OK", user);
                 TokenStorage.setToken(token);
@@ -49,7 +49,7 @@ export default {
                     return Promise.reject("Não há token no repositório");
                 }
 
-                const response = await httpService.get("/me");
+                const response = await httpService.get("/usuario");
                 const { user } = response.data;
 
                 context.commit("AUTH_USER_OK", user);
