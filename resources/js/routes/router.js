@@ -7,29 +7,39 @@ import DashboardComponent from "../components/admin/pages/dashboard/DashboardCom
 import AdminComponent from "../components/admin/AdminComponent";
 import AddProductsComponent from "../components/admin/pages/products/AddProductsComponent";
 import EditAmountProductComponent from "../components/admin/pages/products/EditAmountProductComponent";
+import LoginComponent from "../components/admin/pages/login/LoginComponent";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/admin",
+        path: "/login",
+        component: LoginComponent,
+        name: "login"
+    },
+    {
+        path: "/",
         component: AdminComponent,
+        name: "home",
         children: [
             {
                 path: "products",
                 component: ProductsComponent,
-                name: "admin.products"
+                name: "admin.products",
+                meta: { auth: true }
             },
             {
                 path: "products/create",
                 component: AddProductsComponent,
-                name: "admin.products.create"
+                name: "admin.products.create",
+                meta: { auth: true }
             },
             {
                 path: "products/:id/edit-amount",
                 component: EditAmountProductComponent,
                 name: "admin.products.editamount",
                 props: true,
+                meta: { auth: true },
                 beforeEnter: (to, from, next) => {
                     const id = to.params.id;
                     if (store.getters.getProductById(id)) {
@@ -40,7 +50,7 @@ const routes = [
                 }
             },
             {
-                path: "",
+                path: "dashboard",
                 component: DashboardComponent,
                 name: "admin.dashboard"
             }
@@ -49,5 +59,14 @@ const routes = [
 ];
 
 const router = new VueRouter({ mode: "history", routes });
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.auth && !store.state.auth.authenticated) {
+        store.commit("CHANGE_URL_BACK", to.name);
+        next({ name: "login" });
+    } else {
+        next();
+    }
+});
 
 export default router;

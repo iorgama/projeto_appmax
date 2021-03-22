@@ -14,8 +14,7 @@
 </template>
 
 <script>
-export default {
-  
+export default {  
   computed:{
     product(){
       return this.$store.getters.getProductById(this.id)

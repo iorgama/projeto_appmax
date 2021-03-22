@@ -31,11 +31,11 @@ class AuthApiController extends Controller
         }
 
         // get user authenticated
-        // $user = auth()->user();
+        $user = auth()->user();
 
         return response()->json([
             'success' => true,
-            // 'user' => $user,
+            'user' => $user,
             'token' => $jwt_token,
         ]);
     }
@@ -43,7 +43,7 @@ class AuthApiController extends Controller
     public function getAuthenticatedUser()
     {
         // get user authenticated
-        if (!$user = JWTAuth::parseToken()->authenticatew()) {
+        if (!$user = JWTAuth::parseToken()->authenticate()) {
             return response()->json(['user_not_found'], 404);
         }
 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import httpService from "../../../services/httpService";
 
 export default {
     state: {
@@ -11,10 +11,9 @@ export default {
     },
     actions: {
         loadProducts(context) {
-            axios
-                .get("/api/produtos")
+            httpService
+                .get("/produtos")
                 .then(response => {
-                    console.log(response);
                     context.commit("SET_PRODUCTS", response.data);
                 })
                 .catch(errors => {
@@ -24,8 +23,8 @@ export default {
 
         storeProduct(context, params) {
             return new Promise((resolve, reject) => {
-                axios
-                    .post("/api/adicionar-produtos", params)
+                httpService
+                    .post("/adicionar-produtos", params)
                     .then(response => {
                         resolve();
                     })
@@ -38,8 +37,8 @@ export default {
         editAmountProduct(context, params) {
             const { amount } = params;
             return new Promise((resolve, reject) => {
-                axios
-                    .put(`/api/baixar-produtos/${params.id}`, { amount })
+                httpService
+                    .put(`/baixar-produtos/${params.id}`, { amount })
                     .then(response => {
                         resolve();
                     })
