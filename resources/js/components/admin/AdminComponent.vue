@@ -1,40 +1,25 @@
 <template>
   <div>
-    <ul>
-      <li>
-        <router-link :to="{name: 'admin.products'}"> Produtos </router-link>
-      </li>
-      <li>
-        <router-link :to="{name: 'admin.report'}"> Relatórios </router-link>
-      </li>
-      <li>
-        {{me.name}} <button @click="logout">Logout</button>
-      </li>
-    </ul>
-    <router-view></router-view>
+    <navbar />
+    <b-container>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
 <script>
+import Navbar from '../layout/navbar/NavbarComponent'
+
 export default {
+  components: {
+    Navbar
+  },
   mounted() {
     this.$store
       .dispatch("checkLogin")
       .then(() => router.push({ name: "home" }))
       .catch(error => {});
   },
-  methods: {
-    logout() {
-      this.$store.dispatch('logout').then(() => {
-        this.$router.replace({ name: "login" })
-      })
-    }
-  },
-  computed:{
-    me() {
-      return this.$store.state.auth.me
-    }
-  }
 }
 </script>
 

@@ -1,33 +1,96 @@
 <template>
   <div>
-    <div>
-      <form @submit.prevent="onSubmit">
-        <label for="fdescription">Descrição</label>
-        <input type="text" id="fdescription" v-model="formData.description">
+    <b-form @submit.prevent="onSubmit">
+      <b-form-group
+        id="fdescription-group"
+        label="Descrição"
+        label-for="fdescription"
+      >
+        <b-form-input
+          id="fdescription"
+          v-model="formData.description"
+          type="text"
+          placeholder="Insira a descrição do produto, por exemplo, Smartphone"
+          required
+        />
+      </b-form-group>
 
-        <label for="fbrand">Fabricante</label>
-        <input type="text" id="fbrand" v-model="formData.brand">
+      <b-form-group
+        id="fbrand-group"
+        label="Marca"
+        label-for="fbrand"
+      >
+        <b-form-input
+          id="fbrand"
+          v-model="formData.brand"
+          type="text"
+          placeholder="Insira a marca do produto, por exemplo, Samsung"
+          required
+        />
+      </b-form-group>
 
-        <label for="fmodel">Modelo</label>
-        <input type="text" id="fmodel" v-model="formData.model">
+      <b-form-group
+        id="fmodel-group"
+        label="Modelo"
+        label-for="fmodel"
+      >
+        <b-form-input
+          id="fmodel"
+          v-model="formData.model"
+          type="text"
+          placeholder="Insira o modelo do produto, por exemplo, Galaxy S20"
+          required
+        />
+      </b-form-group>
 
-        <label for="fcolor">Cor</label>
-        <input type="text" id="fcolor" v-model="formData.color">
+      <b-form-group
+        id="fcolor-group"
+        label="Cor"
+        label-for="fcolor"
+      >
+        <b-form-input
+          id="fcolor"
+          v-model="formData.color"
+          type="text"
+          placeholder="Insira a cor do produto"
+          required
+        />
+      </b-form-group>
 
-        <label for="fsku">SKU</label>
-        <input type="text" id="fsku" :value="sku" readonly>     
-        <small> A SKU é gerada a partir dos três primeiros caracteres da descrição do produto mais o primeiro caractere do fabricante mais os dois primeiros caracteres do modelo e por último os dois primeiros caracteres da cor.</small>
-        <br />
-        <button type="submit"> Enviar </button>
-      </form>
-    </div>
+      <b-form-group
+        id="fsku-group"
+        label="SKU"
+        label-for="fsku"
+      >
+        <b-form-input
+          id="fsku"
+          :value="sku"
+          type="text"
+          readonly
+        />
+        <small>
+          A SKU é gerada a partir dos três primeiros caracteres da descrição do produto mais o primeiro caractere do fabricante mais os dois primeiros caracteres do modelo e por último os dois primeiros caracteres da cor.
+        </small>
+      </b-form-group>
+
+      <div class="mt-4">
+        <b-button type="submit" block variant="primary" :disabled="isLoading">
+          {{isLoading ? 'Cadastrando produto...' : 'Cadastrar'}}
+        </b-button>
+      </div>
+    </b-form>
   </div>
 </template>
 
 <script>
 export default {
-  computed:{
-    //Dynamically create the sku.
+  data() {
+    return {
+      isLoading: false
+    }
+  },
+  computed: {
+    //Dynamically compute the sku.
     sku(){
       const description = this.formData.description.substring(0,3);
       const brand = this.formData.brand.substring(0, 1);
@@ -36,23 +99,31 @@ export default {
       return [description, brand, model,color].join('').toUpperCase();
     }
   },
-  props: {
-      formData:{
-        default:() => {
-          return {
-            description: '',
-            brand: '',
-            model: '',
-            color: ''
-          }
-        }
-      }    
+  data() {
+    return {
+      formData: {
+        description: '',
+        brand: '',
+        model: '',
+        color: ''
+      }
+    }
   },
   methods: {
-    onSubmit(){
-      this.$store.dispatch('storeProduct', {...this.formData, sku: this.sku})
-      .then(() => this.$router.push({name: 'admin.products'})) 
-      .catch();
+    async onSubmit() {
+      try {
+        this.isLoading = true
+        await this.$store.dispatch('storeProduct', {...this.formData, sku: this.sku})
+        this.$router.push({name: 'admin.products'})
+      } catch (error) {
+        const {message} = error
+        this.$bvToast.toast(message, {
+          title: 'Erro',
+          autoHideDelay: 5000,
+        })
+      } finally {
+        this.isLoading = false
+      }
     }
   },
 }

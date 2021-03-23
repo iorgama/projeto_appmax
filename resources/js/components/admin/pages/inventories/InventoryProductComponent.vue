@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>Movimentação de Estoque</h1>
+    <div class="my-4">
+      <h2>
+        Movimentação de Estoque
+      </h2>
+    </div>
     <form-inventory :id="id" />
   </div>
 </template>
@@ -8,12 +12,12 @@
 <script>
 import FormInventoryComponent from './forms/FormInventoryComponent';
 export default {
-  components:{
-    FormInventory : FormInventoryComponent
+  components: {
+    FormInventory: FormInventoryComponent
   },
-  props:{
+  props: {
     id: {
-      require: true
+      required: true
     }
   },
 }

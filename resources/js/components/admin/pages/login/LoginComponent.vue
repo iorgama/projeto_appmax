@@ -1,33 +1,61 @@
 <template>
-  <div>
-    <h2> Login </h2>
-    <div>
-    <form @submit.prevent="login">
-      <label for="femail">Email:</label>
-      <input type="text" id="femail" v-model="formData.email">
+  <b-container>
+    <b-row class="justify-content-center">
+      <b-card style="flex: 1; max-width: 30rem" title="Login" class="mt-5">
+        <form @submit.prevent="login">
+          <label for="femail">Email:</label>
+          <b-form-input
+            id="femail"
+            required
+            type="text"
+            v-model="formData.email"
+          />
 
-      <label for="fpassword">Senha:</label>
-      <input type="text" id="fpassword" v-model="formData.password">
+          <label for="fpassword">Senha:</label>
+          <b-form-input
+            id="fpassword"
+            required
+            type="password"
+            v-model="formData.password"
+          />
 
-      <button type="submit"> Acessar </button>
-    </form>
-  </div>
-  </div>
+          <div class="mt-4">
+            <b-button type="submit" block variant="primary" :disabled="isLoading">
+              {{isLoading ? 'Efetuando login...' : 'Efetuar login'}}
+            </b-button>
+          </div>
+        </form>
+      </b-card>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 export default{
-  data (){
+  data() {
     return {
       formData:{
         email: '',
         password: ''
-      }
+      },
+      isLoading: false
     }
   },
-  methods:{
-    login(){
-      this.$store.dispatch("login", this.formData).then(() => this.$router.push({name: 'home'}).catch(errors => console.log(errors)));
+  methods: {
+    async login() {
+      try {
+        this.isLoading = true
+        const a = await this.$store.dispatch("login", this.formData)
+        this.$router.push({name: 'home'})
+      } catch (error) {
+        const {message} = error
+        this.$bvToast.toast(message, {
+          title: 'Erro',
+          autoHideDelay: 5000,
+        })
+      } finally {
+        this.isLoading = false
+      }
     }
   }
 }

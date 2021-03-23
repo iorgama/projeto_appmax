@@ -1,37 +1,30 @@
 <template>
   <div>
-    <table id="products">
-      <thead>
-        <th>Data da movimentação</th>
-        <th>Descrição do produto</th>
-        <th>Quantidade</th>
-        <th>Tipo de movimentação</th>
-        <th>Avisos</th>
-      </thead>
-      <tbody>
-        <tr v-for="(row, index) in reports" :key="index">
-          <td> {{ row.date}} </td>
-          <td> {{ row.description}} </td>
-          <td> {{ row.daily_amount}} </td>
-          <td> {{ row.type}} </td>
-          <td> {{ row.low_amount}} </td>
-          
-        </tr>
-      </tbody>
-    </table>
+    <b-table striped hover :fields="fields" :items="items" responsize="sm" />
   </div>
 </template>
 
 <script>
 export default{
-  created(){
+  mounted() {
     this.$store.dispatch('loadReportStock')
   },
-  computed:{
-    reports(){
+  computed: {
+    items() {
       return this.$store.state.reports.items
     }
- }
+  },
+  data() {
+    return {
+      fields: [
+        { key: 'date', label: 'Data da movimentação', sortable: true },
+        { key: 'description', label: 'Descrição do produto' },
+        { key: 'daily_amount', label: 'Quantidade' },
+        { key: 'type', label: 'Tipo de movimentação',sortable: true },
+        { key: 'low_amount', label: 'Aviso' },
+      ],
+    }
+  }
 }
 </script>
 

@@ -33,7 +33,18 @@ export default {
                 context.commit("AUTH_USER_OK", user);
                 TokenStorage.setToken(token);
             } catch (error) {
-                Promise.reject(error);
+                const {
+                    data: { message }
+                } = error.response;
+
+                if (message) {
+                    throw { message };
+                }
+
+                throw {
+                    message:
+                        "Ops! Não foi possível fazer login agora. Tente novamente em alguns instantes."
+                };
             }
         },
 
@@ -54,7 +65,14 @@ export default {
 
                 context.commit("AUTH_USER_OK", user);
             } catch (error) {
-                Promise.reject(error);
+                const { data } = error.response;
+                if (data.message) {
+                    const { message } = data;
+                    throw new Error(message);
+                }
+                throw new Error(
+                    "Erro interno. Tente novamente em alguns instantes."
+                );
             }
         }
     }

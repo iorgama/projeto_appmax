@@ -10,28 +10,43 @@ export default {
         }
     },
     actions: {
-        loadProducts(context) {
-            httpService
-                .get("/produtos")
-                .then(response => {
-                    context.commit("SET_PRODUCTS", response.data);
-                })
-                .catch(errors => {
-                    console.log(errors);
-                });
+        async loadProducts(context) {
+            try {
+                const response = await httpService.get("/produtos");
+                context.commit("SET_PRODUCTS", response.data);
+            } catch (error) {
+                const {
+                    data: { message }
+                } = error.response;
+
+                if (message) {
+                    throw { message };
+                }
+
+                throw {
+                    message:
+                        "Não foi possível fazer login agora. Tente novamente em alguns instantes."
+                };
+            }
         },
 
-        storeProduct(context, params) {
-            return new Promise((resolve, reject) => {
-                httpService
-                    .post("/adicionar-produtos", params)
-                    .then(response => {
-                        resolve();
-                    })
-                    .catch(errors => {
-                        reject(errors);
-                    });
-            });
+        async storeProduct(context, params) {
+            try {
+                await httpService.post("/adicionar-produtos", params);
+            } catch (error) {
+                const {
+                    data: { message }
+                } = error.response;
+
+                if (message) {
+                    throw { message };
+                }
+
+                throw {
+                    message:
+                        "Não foi possível cadastrar o produto agora. Tente novamente em alguns instantes."
+                };
+            }
         }
     },
     getters: {

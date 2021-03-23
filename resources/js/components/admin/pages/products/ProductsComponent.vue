@@ -1,29 +1,23 @@
 <template>
   <div>
 
-    <a class="product-link"><router-link :to="{name: 'admin.products.create'}">Cadastrar produto</router-link></a>
+    <div class="my-4">
+      <router-link :to="{name: 'admin.products.create'}" custom v-slot="{ navigate }">
+        <b-button @click="navigate">Cadastrar produto</b-button>
+      </router-link>
+    </div>
 
-    <table id="products">
-      <thead>
-        <th>Nome</th>
-        <th>Fabricante</th>
-        <th>Modelo</th>
-        <th>Cor</th>
-        <th>SKU</th>
-        <th width="100">AÇÕES</th>
-      </thead>
-      <tbody>
-        <tr v-for="(product, index) in products" :key="index">
-          <td> {{ product.description}} </td>
-          <td> {{ product.brand}} </td>
-          <td> {{ product.model}} </td>
-          <td> {{ product.color}} </td>
-          <td> {{ product.sku}} </td>
-          <td> <router-link :to="{name: 'admin.products.inventory', params:{id: product.id}}"> Entrada/Saída</router-link>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <b-table striped hover :fields="fields" :items="items" responsize="sm">
+      <!-- A virtual column -->
+      <template #cell(id)="data">
+        <router-link :to="{
+          name: 'admin.products.inventory',
+          params: { id: data.value }
+        }">
+          Entrada/Saída
+        </router-link>
+      </template>
+    </b-table>
   </div>
 </template>
 
@@ -32,9 +26,21 @@ export default{
   created(){
     this.$store.dispatch('loadProducts')
   },
-  computed:{
-    products(){
+  computed: {
+    items(){
       return this.$store.state.products.items
+    }
+  },
+  data() {
+    return {
+      fields: [
+        { key: 'description', label: 'Descrição', sortable: true },
+        { key: 'brand', label: 'Fabricante', sortable: true },
+        { key: 'model', label: 'Modelo' },
+        { key: 'color', label: 'Cor' },
+        { key: 'sku', label: 'SKU' },
+        { key: 'id', label: 'Ações' },
+      ],
     }
   }
 }
