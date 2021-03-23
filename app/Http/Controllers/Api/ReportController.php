@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Inventory;
 
 class ReportController extends Controller
 {
-    public function products(Product $product)
+    public function reportStock(Inventory $inventory)
     {
-        $products = $product->get();
-        return response()->json($products);
+        $inventories = $inventory->reportStock();
+        return response()->json($inventories);
     }
 }

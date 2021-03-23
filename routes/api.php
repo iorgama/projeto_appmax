@@ -22,5 +22,5 @@ Route::group([
   Route::post('/movimentacao-estoque', [InventoryController::class, 'store']);
   Route::get('/verifica-quantidade-estoque/{id}', [InventoryController::class, 'amountProduct']);
   //reports
-  Route::get('/relatorios-produtos', [ReportController::class, 'products']);
+  Route::get('/relatorio-entrada-saida', [ReportController::class, 'reportStock']);
 });

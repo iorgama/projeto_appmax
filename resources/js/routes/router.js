@@ -8,6 +8,7 @@ import AdminComponent from "../components/admin/AdminComponent";
 import AddProductsComponent from "../components/admin/pages/products/AddProductsComponent";
 import InventoryProductComponent from "../components/admin/pages/inventories/InventoryProductComponent";
 import LoginComponent from "../components/admin/pages/login/LoginComponent";
+import ReportStockComponent from "../components/admin/pages/reports/ReportStockComponent";
 
 Vue.use(VueRouter);
 
@@ -50,9 +51,17 @@ const routes = [
                 }
             },
             {
-                path: "report",
+                path: "reports",
                 component: ReportComponent,
-                name: "admin.report"
+                name: "admin.report",
+                children: [
+                    {
+                        path: "reportStock",
+                        component: ReportStockComponent,
+                        name: "admin.report.stock",
+                        meta: { auth: true }
+                    }
+                ]
             }
         ]
     }

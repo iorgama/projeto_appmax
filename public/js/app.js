@@ -2255,26 +2255,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _forms_FormReportComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms/FormReportComponent */ "./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue");
 //
 //
 //
 //
 //
 //
-
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    FormReport: _forms_FormReportComponent__WEBPACK_IMPORTED_MODULE_0__.default
+  methods: {
+    reportStock: function reportStock() {
+      console.log('teste');
+      this.$router.push({
+        name: 'admin.report.stock'
+      });
+    }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2288,7 +2295,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {
+    this.$store.dispatch('loadReportStock');
+  },
+  computed: {
+    reports: function reports() {
+      return this.$store.state.reports.items;
+    }
+  }
+});
 
 /***/ }),
 
@@ -2343,8 +2377,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _vuex_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../vuex/store */ "./resources/js/vuex/store.js");
 /* harmony import */ var _components_admin_pages_products_ProductsComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/admin/pages/products/ProductsComponent */ "./resources/js/components/admin/pages/products/ProductsComponent.vue");
 /* harmony import */ var _components_admin_pages_reports_ReportComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/admin/pages/reports/ReportComponent */ "./resources/js/components/admin/pages/reports/ReportComponent.vue");
@@ -2352,6 +2386,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_pages_products_AddProductsComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/admin/pages/products/AddProductsComponent */ "./resources/js/components/admin/pages/products/AddProductsComponent.vue");
 /* harmony import */ var _components_admin_pages_inventories_InventoryProductComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/admin/pages/inventories/InventoryProductComponent */ "./resources/js/components/admin/pages/inventories/InventoryProductComponent.vue");
 /* harmony import */ var _components_admin_pages_login_LoginComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/admin/pages/login/LoginComponent */ "./resources/js/components/admin/pages/login/LoginComponent.vue");
+/* harmony import */ var _components_admin_pages_reports_ReportStockComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/admin/pages/reports/ReportStockComponent */ "./resources/js/components/admin/pages/reports/ReportStockComponent.vue");
 
 
 
@@ -2361,7 +2396,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_8__.default);
+
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_9__.default);
 var routes = [{
   path: "/login",
   component: _components_admin_pages_login_LoginComponent__WEBPACK_IMPORTED_MODULE_6__.default,
@@ -2404,12 +2440,20 @@ var routes = [{
       }
     }
   }, {
-    path: "report",
+    path: "reports",
     component: _components_admin_pages_reports_ReportComponent__WEBPACK_IMPORTED_MODULE_2__.default,
-    name: "admin.report"
+    name: "admin.report",
+    children: [{
+      path: "reportStock",
+      component: _components_admin_pages_reports_ReportStockComponent__WEBPACK_IMPORTED_MODULE_7__.default,
+      name: "admin.report.stock",
+      meta: {
+        auth: true
+      }
+    }]
   }]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__.default({
   mode: "history",
   routes: routes
 });
@@ -2718,6 +2762,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/vuex/modules/reports/reports.js":
+/*!******************************************************!*\
+  !*** ./resources/js/vuex/modules/reports/reports.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _services_httpService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../services/httpService */ "./resources/js/services/httpService.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: {
+    items: []
+  },
+  mutations: {
+    SET_REPORT_STOCK: function SET_REPORT_STOCK(state, reports) {
+      state.items = reports;
+    }
+  },
+  actions: {
+    loadReportStock: function loadReportStock(context) {
+      _services_httpService__WEBPACK_IMPORTED_MODULE_0__.default.get("/relatorio-entrada-saida").then(function (response) {
+        context.commit("SET_REPORT_STOCK", response.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/vuex/store.js":
 /*!************************************!*\
   !*** ./resources/js/vuex/store.js ***!
@@ -2729,21 +2808,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_products_products__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/products/products */ "./resources/js/vuex/modules/products/products.js");
 /* harmony import */ var _modules_inventories_inventories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/inventories/inventories */ "./resources/js/vuex/modules/inventories/inventories.js");
 /* harmony import */ var _modules_auth_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/auth/auth */ "./resources/js/vuex/modules/auth/auth.js");
+/* harmony import */ var _modules_reports_reports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/reports/reports */ "./resources/js/vuex/modules/reports/reports.js");
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_3__.default.use(vuex__WEBPACK_IMPORTED_MODULE_4__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_4__.default.Store({
+
+vue__WEBPACK_IMPORTED_MODULE_4__.default.use(vuex__WEBPACK_IMPORTED_MODULE_5__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_5__.default.Store({
   modules: {
     products: _modules_products_products__WEBPACK_IMPORTED_MODULE_0__.default,
     inventories: _modules_inventories_inventories__WEBPACK_IMPORTED_MODULE_1__.default,
+    reports: _modules_reports_reports__WEBPACK_IMPORTED_MODULE_3__.default,
     auth: _modules_auth_auth__WEBPACK_IMPORTED_MODULE_2__.default
   }
 });
@@ -4028,10 +4110,10 @@ component.options.__file = "resources/js/components/admin/pages/reports/ReportCo
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/admin/pages/reports/ReportStockComponent.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/admin/pages/reports/ReportStockComponent.vue ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4039,9 +4121,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _FormReportComponent_vue_vue_type_template_id_e41d3222___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormReportComponent.vue?vue&type=template&id=e41d3222& */ "./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=template&id=e41d3222&");
-/* harmony import */ var _FormReportComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormReportComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _ReportStockComponent_vue_vue_type_template_id_2c6f32c1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportStockComponent.vue?vue&type=template&id=2c6f32c1& */ "./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=template&id=2c6f32c1&");
+/* harmony import */ var _ReportStockComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportStockComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -4050,9 +4132,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _FormReportComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _FormReportComponent_vue_vue_type_template_id_e41d3222___WEBPACK_IMPORTED_MODULE_0__.render,
-  _FormReportComponent_vue_vue_type_template_id_e41d3222___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _ReportStockComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ReportStockComponent_vue_vue_type_template_id_2c6f32c1___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ReportStockComponent_vue_vue_type_template_id_2c6f32c1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -4062,7 +4144,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/admin/pages/reports/forms/FormReportComponent.vue"
+component.options.__file = "resources/js/components/admin/pages/reports/ReportStockComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -4195,10 +4277,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************/
+/***/ "./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4206,8 +4288,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormReportComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormReportComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormReportComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportStockComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ReportStockComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportStockComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -4347,19 +4429,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=template&id=e41d3222&":
-/*!******************************************************************************************************************!*\
-  !*** ./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=template&id=e41d3222& ***!
-  \******************************************************************************************************************/
+/***/ "./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=template&id=2c6f32c1&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=template&id=2c6f32c1& ***!
+  \*************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormReportComponent_vue_vue_type_template_id_e41d3222___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormReportComponent_vue_vue_type_template_id_e41d3222___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportStockComponent_vue_vue_type_template_id_2c6f32c1___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportStockComponent_vue_vue_type_template_id_2c6f32c1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormReportComponent_vue_vue_type_template_id_e41d3222___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormReportComponent.vue?vue&type=template&id=e41d3222& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=template&id=e41d3222&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportStockComponent_vue_vue_type_template_id_2c6f32c1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ReportStockComponent.vue?vue&type=template&id=2c6f32c1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=template&id=2c6f32c1&");
 
 
 /***/ }),
@@ -4965,26 +5047,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v(" Relatório de produtos ")]),
+      _vm._v(" "),
+      _c("div", [
+        _c("button", { on: { click: _vm.reportStock } }, [
+          _vm._v(" Movimentação de produtos por dia")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v(" Relatório de produtos ")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=template&id=e41d3222&":
-/*!*********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/forms/FormReportComponent.vue?vue&type=template&id=e41d3222& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=template&id=2c6f32c1&":
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/pages/reports/ReportStockComponent.vue?vue&type=template&id=2c6f32c1& ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4997,9 +5086,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("table", { attrs: { id: "products" } }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.reports, function(row, index) {
+          return _c("tr", { key: index }, [
+            _c("td", [_vm._v(" " + _vm._s(row.date) + " ")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(" " + _vm._s(row.description) + " ")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(" " + _vm._s(row.daily_amount) + " ")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(" " + _vm._s(row.type) + " ")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(" " + _vm._s(row.low_amount) + " ")])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Data da movimentação")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Descrição do produto")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Quantidade")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tipo de movimentação")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Avisos")])
+    ])
+  }
+]
 render._withStripped = true
 
 

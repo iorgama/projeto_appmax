@@ -38,17 +38,6 @@ class InventoryController extends Controller
     //Responsible for returning the quantity of products in the inventory.
     public function amountProduct($id)
     {
-        // $inventories = DB::table('inventories')
-        //     ->join('products', 'products.id', '=', 'inventories.product_id')
-        //     ->select(
-        //         DB::raw("COALESCE(SUM(CASE
-        //                     WHEN type = 'E' THEN amount
-        //                 END),0) -
-        //                 COALESCE(SUM(CASE
-        //                     WHEN type = 'S' THEN amount
-        //                 END),0) AS amount")
-        //     )->where('product_id', $id)
-        //     ->get();
 
         $product = Product::find($id);
         $amount = $product->getAmount();

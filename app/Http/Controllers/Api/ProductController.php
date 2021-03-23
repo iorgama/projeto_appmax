@@ -41,23 +41,4 @@ class ProductController extends Controller
 
         return response()->json(['Sucess' => true], 204);
     }
-
-    // public function updateAmount(UpdateProductFormRequest $request, $id)
-    // {
-    //     if (!$product = $this->product->find($id)) {
-    //         return response()->json(['error' => 'Not found'], 404);
-    //     }
-
-    //     if ($product->amount >= $request->amount) {
-    //         $request->merge([
-    //             'amount' => $product->amount - $request->amount,
-    //         ]);
-    //     } else {
-    //         return response()->json(['error' => 'There is not enough stock to be removed.'], 422);
-    //     }
-
-    //     $product->update($request->all());
-
-    //     return response()->json($product);
-    // }
 }

@@ -1,14 +1,20 @@
 <template>
   <div>
     <h1> Relatório de produtos </h1>
+    <div>
+      <button @click="reportStock"> Movimentação de produtos por dia</button>
+    </div>
+        <router-view></router-view>
   </div>
 </template>
 
 <script>
-import FormReportComponent from './forms/FormReportComponent';
 export default {
-  components:{
-    FormReport : FormReportComponent
-  },
+   methods:{
+    reportStock(){
+      console.log('teste')
+      this.$router.push({name: 'admin.report.stock'})
+    }
+  }
 }
 </script>
