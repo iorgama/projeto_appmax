@@ -9,15 +9,10 @@ import AddProductsComponent from "../components/admin/pages/products/AddProducts
 import InventoryProductComponent from "../components/admin/pages/inventories/InventoryProductComponent";
 import LoginComponent from "../components/admin/pages/login/LoginComponent";
 import ReportStockComponent from "../components/admin/pages/reports/ReportStockComponent";
-
+import NotFoundPageComponent from "../components/admin/pages/404/NotFoundPageComponent";
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: "/login",
-        component: LoginComponent,
-        name: "login"
-    },
     {
         path: "/",
         component: AdminComponent,
@@ -64,7 +59,14 @@ const routes = [
                 ]
             }
         ]
-    }
+    },
+    {
+        path: "/login",
+        component: LoginComponent,
+        name: "login"
+    },
+    //Error 404
+    { path: "*", component: NotFoundPageComponent }
 ];
 
 const router = new VueRouter({ mode: "history", routes });

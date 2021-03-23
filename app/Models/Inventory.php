@@ -19,7 +19,7 @@ class Inventory extends Model
         return $this->belongsTo(Product::class);
     }
 
-    //Report of products handled per day
+    //The method below returns the movement of products per day and warns about products that are in amount less than one hundred units.
     public function reportStock()
     {
         $inventories = DB::select("
