@@ -15,9 +15,11 @@ Route::group([
   //users
   Route::get('/usuario', [AuthApiController::class, 'getAuthenticatedUser']);
   //products
+  Route::get('/produto/{id}', [ProductController::class, 'getProductById']);
   Route::get('/produtos', [ProductController::class, 'getProducts']);
-  Route::post('/adicionar-produtos', [ProductController::class, 'store']);
-  // Route::delete('/remover-produto/{id}', [ProductController::class, 'destroy']);
+  Route::post('/adicionar-produto', [ProductController::class, 'store']);
+  Route::put('/atualizar-produto/{id}', [ProductController::class, 'update']);
+  Route::delete('/remover-produto/{id}', [ProductController::class, 'destroy']);
   //inventory
   Route::post('/movimentacao-estoque', [InventoryController::class, 'store']);
   Route::get('/verifica-quantidade-estoque/{id}', [InventoryController::class, 'amountProduct']);

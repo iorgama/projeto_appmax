@@ -10,15 +10,26 @@ export default {
         }
     },
     actions: {
-        loadReportStock(context) {
-            httpService
-                .get("/relatorio-entrada-saida")
-                .then(response => {
-                    context.commit("SET_REPORT_STOCK", response.data);
-                })
-                .catch(errors => {
-                    console.log(errors);
-                });
+        async loadReportStock(context) {
+            try {
+                const response = await httpService.get(
+                    "/relatorio-entrada-saida"
+                );
+                context.commit("SET_REPORT_STOCK", response.data);
+            } catch (error) {
+                const {
+                    data: { message }
+                } = error.response;
+
+                if (message) {
+                    throw { message };
+                }
+
+                throw {
+                    message:
+                        "Não foi possível carregar relatórios agora. Tente novamente em alguns instantes."
+                };
+            }
         }
     }
 };

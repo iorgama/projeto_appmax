@@ -22,13 +22,12 @@ class InventoryController extends Controller
         $product = Product::find($request->product_id);
         $amount = $product->getAmount();
 
-        //
         $request->merge([
             'type' => strtoupper($request->type)
         ]);
 
         if ($request->type === 'S' && $amount < $request->amount) {
-            return response()->json(['error' => 'There is not enough stock to be removed.'], 422);
+            return response()->json(['error' => 'Não tem quantidade suficiente para retirar do estoque.'], 422);
         }
 
         $inventory = $this->inventory->create($request->all());

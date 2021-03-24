@@ -25,14 +25,14 @@ export default {
 
                 throw {
                     message:
-                        "Não foi possível fazer login agora. Tente novamente em alguns instantes."
+                        "Não foi possível carregar produtos agora. Tente novamente em alguns instantes."
                 };
             }
         },
 
         async storeProduct(context, params) {
             try {
-                await httpService.post("/adicionar-produtos", params);
+                await httpService.post("/adicionar-produto", params);
             } catch (error) {
                 const {
                     data: { message }
@@ -45,6 +45,44 @@ export default {
                 throw {
                     message:
                         "Não foi possível cadastrar o produto agora. Tente novamente em alguns instantes."
+                };
+            }
+        },
+
+        async updateProduct(context, { id, ...params }) {
+            try {
+                await httpService.put(`/atualizar-produto/${id}`, params);
+            } catch (error) {
+                const {
+                    data: { message }
+                } = error.response;
+
+                if (message) {
+                    throw { message };
+                }
+
+                throw {
+                    message:
+                        "Não foi possível editar o produto agora. Tente novamente em alguns instantes."
+                };
+            }
+        },
+
+        async deleteProduct(context, { id }) {
+            try {
+                await httpService.delete(`/remover-produto/${id}`);
+            } catch (error) {
+                const {
+                    data: { message }
+                } = error.response;
+
+                if (message) {
+                    throw { message };
+                }
+
+                throw {
+                    message:
+                        "Não foi possível remover o produto agora. Tente novamente em alguns instantes."
                 };
             }
         }

@@ -31,10 +31,17 @@
 </template>
 
 <script>
-export default{
+import { TokenStorage } from '../../../../services/tokenStorage';
+export default {
+  created() {
+    const token = TokenStorage.getToken();
+    if (token) {
+      this.$router.push({ name: "home" })
+    }
+  },
   data() {
     return {
-      formData:{
+      formData: {
         email: '',
         password: ''
       },
@@ -45,10 +52,10 @@ export default{
     async login() {
       try {
         this.isLoading = true
-        const a = await this.$store.dispatch("login", this.formData)
+        await this.$store.dispatch("login", this.formData)
         this.$router.push({name: 'home'})
       } catch (error) {
-        const {message} = error
+        const { message } = error
         this.$bvToast.toast(message, {
           title: 'Erro',
           autoHideDelay: 5000,

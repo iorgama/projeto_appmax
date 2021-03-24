@@ -31,11 +31,32 @@ class ProductController extends Controller
         return response()->json($product, 201);
     }
 
+    public function update(StoreProductFormRequest $request, $id)
+    {
+        if (!$product = $this->product->find($id)) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+        $product->update($request->all());
+
+        return response()->json($product);
+    }
+
+    public function getProductById($id)
+    {
+        if (!$product = $this->product->find($id)) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+        return response()->json($product);
+    }
+
     public function destroy($id)
     {
         if (!$product = $this->product->find($id)) {
             return response()->json(['error' => 'Not found'], 404);
         }
+
+        // delete related   
+        $product->inventories()->delete();
 
         $product->delete();
 

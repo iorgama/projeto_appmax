@@ -2,20 +2,18 @@
   <div>
     <div class="my-4">
       <h2>
-        Modelos de relatórios
+        Relatórios de movimentações
       </h2>
-      <b-button @click="reportStock">Movimentação de produtos por dia</b-button>
     </div>
-    <router-view></router-view>
+    <report-stock-component />
   </div>
 </template>
 
 <script>
+import ReportStockComponent from './ReportStockComponent'
 export default {
-   methods: {
-    reportStock() {
-      this.$router.push({ name: 'admin.report.stock' })
-    }
-  }
+  components: {
+    ReportStockComponent
+  },
 }
 </script>

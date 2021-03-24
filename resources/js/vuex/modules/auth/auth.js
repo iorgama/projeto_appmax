@@ -3,7 +3,7 @@ import { TokenStorage } from "../../../services/tokenStorage";
 
 export default {
     state: {
-        me: {},
+        me: null,
         authenticated: false,
         urlBack: "home"
     },
@@ -16,7 +16,7 @@ export default {
         LOGOUT(state) {
             // remove the user from store
             state.authenticated = false;
-            state.me = {};
+            state.me = null;
             // remove the token from local storage
             TokenStorage.removeToken();
         },

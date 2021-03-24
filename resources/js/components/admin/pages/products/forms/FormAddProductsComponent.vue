@@ -75,7 +75,7 @@
 
       <div class="mt-4">
         <b-button type="submit" block variant="primary" :disabled="isLoading">
-          {{isLoading ? 'Cadastrando produto...' : 'Cadastrar'}}
+          {{isLoading ? 'Salvando produto...' : 'Salvar'}}
         </b-button>
       </div>
     </b-form>
@@ -89,9 +89,25 @@ export default {
       isLoading: false
     }
   },
+  created() {
+    if (this.product) {
+      this.formData = {
+        ...this.formData,
+        description: this.product.description,
+        brand: this.product.brand,
+        model: this.product.model,
+        color: this.product.color,
+      }
+    }
+  },
   computed: {
     //Dynamically compute the sku.
-    sku(){
+    product() {
+      if (this.id) {
+        return this.$store.getters.getProductById(this.id);
+      }
+    },
+    sku() {
       const description = this.formData.description.substring(0,3);
       const brand = this.formData.brand.substring(0, 1);
       const model = this.formData.model.substring(0, 2);
@@ -106,14 +122,24 @@ export default {
         brand: '',
         model: '',
         color: ''
-      }
+      },
+      isLoading: false
+    }
+  },
+  props: {
+    id: {
+      required: false
     }
   },
   methods: {
     async onSubmit() {
       try {
         this.isLoading = true
-        await this.$store.dispatch('storeProduct', {...this.formData, sku: this.sku})
+        if (!this.id) {
+          await this.$store.dispatch('storeProduct', {...this.formData, sku: this.sku})
+        } else {
+          await this.$store.dispatch('updateProduct', {...this.formData, sku: this.sku, id: this.id})
+        }
         this.$router.push({name: 'admin.products'})
       } catch (error) {
         const {message} = error

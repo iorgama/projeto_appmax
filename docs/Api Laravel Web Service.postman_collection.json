@@ -1,0 +1,649 @@
+{
+	"info": {
+		"_postman_id": "787b6c42-7a13-424b-b3eb-80643c07e1cc",
+		"name": "Api Laravel Web Service",
+		"description": "# Apresentação\n\nDocumentação para utilização da api.\n\n# Autenticação\n\nA autenticação é feita através de token JWT.\n\n# Códigos\n\n**201 – Created**\n\nRequisição foi bem sucedida e um novo recurso foi criado\n\n**400 – Bad Request**\n\nDados enviados de forma incorreta ou fora do padrão\n\n**403 – Forbidden**\n\nSem autorização suficiente para acessar o recurso desejado\n\n**422 – Unprocessable Entity**\n\nCódigo que indica algum erro de validação.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Listar todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0MzgzNjMsIm5iZiI6MTYxNjQzODM2MywianRpIjoielBLaXRsNWJtQnAweG9ZUCIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.OIQ5CYr6C9JlWHQ9pdiKdFSXS2-xT9cdXQXUd9kyKA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/produtos",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"produtos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar todos os produtos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/produtos",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"produtos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"description\": \"Notebook\",\r\n        \"brand\": \"Dell\",\r\n        \"model\": \"Alienware\",\r\n        \"color\": \"Cinza\",\r\n        \"amount\": 22,\r\n        \"sku\": \"NOTDALCI\",\r\n        \"created_at\": \"2021-03-21T05:25:32.000000Z\",\r\n        \"updated_at\": \"2021-03-21T14:42:35.000000Z\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"description\": \"Celular\",\r\n        \"brand\": \"Samsung\",\r\n        \"model\": \"S21 Plus\",\r\n        \"color\": \"Azul\",\r\n        \"amount\": 5,\r\n        \"sku\": \"CELSS2AZ\",\r\n        \"created_at\": \"2021-03-21T05:26:51.000000Z\",\r\n        \"updated_at\": \"2021-03-21T05:26:51.000000Z\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"description\": \"Fone de ouvido\",\r\n        \"brand\": \"anker\",\r\n        \"model\": \"q30\",\r\n        \"color\": \"preto\",\r\n        \"amount\": 5,\r\n        \"sku\": \"FONAQ3PR\",\r\n        \"created_at\": \"2021-03-21T03:14:10.000000Z\",\r\n        \"updated_at\": \"2021-03-21T03:14:10.000000Z\"\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "Cadastrar produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Beader eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsIiwiaWF0IjoxNjE2NTM5MDc2LCJuYmYiOjE2MTY1MzkwNzYsImp0aSI6IlJhRXJMMWxEMG5Xdjl2ME4iLCJzdWIiOjUxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.VHOrjOHEoYJlkrMj5kCKGbSRNH5bUWyZAOyWZa5yM_E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/adicionar-produto?description=Notebook&brand=Dell&model=Alienware&color=VIOLETA&sku=NOTDALVI",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"adicionar-produto"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "Notebook",
+									"description": "descrição "
+								},
+								{
+									"key": "brand",
+									"value": "Dell",
+									"description": "fabrincate"
+								},
+								{
+									"key": "model",
+									"value": "Alienware",
+									"description": "modelo"
+								},
+								{
+									"key": "color",
+									"value": "VIOLETA",
+									"description": "cor"
+								},
+								{
+									"key": "sku",
+									"value": "NOTDALVI",
+									"description": "sku"
+								}
+							]
+						},
+						"description": "Responsável por cadastrar produto"
+					},
+					"response": [
+						{
+							"name": "Cadastrar produto com um sku que não existe no banco",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/adicionar-produto?description=Celular&brand=Samsung&model=Note 20&color=lilás&amount=10&sku=CELSNOLI",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"adicionar-produto"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "Celular"
+										},
+										{
+											"key": "brand",
+											"value": "Samsung"
+										},
+										{
+											"key": "model",
+											"value": "Note 20"
+										},
+										{
+											"key": "color",
+											"value": "lilás"
+										},
+										{
+											"key": "amount",
+											"value": "10"
+										},
+										{
+											"key": "sku",
+											"value": "CELSNOLI"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"description\": \"Celular\",\r\n    \"brand\": \"Samsung\",\r\n    \"model\": \"Note 20\",\r\n    \"color\": \"lilás\",\r\n    \"amount\": \"10\",\r\n    \"sku\": \"CELSNOLI\",\r\n    \"updated_at\": \"2021-03-21T03:53:43.000000Z\",\r\n    \"created_at\": \"2021-03-21T03:53:43.000000Z\",\r\n    \"id\": 5\r\n}"
+						},
+						{
+							"name": "Cadastrar produto com um sku que existe no banco",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/adicionar-produto?description=Celular&brand=Samsung&model=Note 20&color=lilás&sku=CELSNOLI",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"adicionar-produto"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "Celular"
+										},
+										{
+											"key": "brand",
+											"value": "Samsung"
+										},
+										{
+											"key": "model",
+											"value": "Note 20"
+										},
+										{
+											"key": "color",
+											"value": "lilás"
+										},
+										{
+											"key": "sku",
+											"value": "CELSNOLI"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"The given data was invalid.\",\r\n    \"errors\": {\r\n        \"sku\": [\r\n            \"The sku has already been taken.\"\r\n        ]\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://laravel-web-service.local/api/login?email=admin@admin.com.br&password=123456",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "admin@admin.com.br"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								}
+							]
+						},
+						"description": "Responsável por realizar o login"
+					},
+					"response": []
+				},
+				{
+					"name": "Relatório de Produtos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0MzgzNjMsIm5iZiI6MTYxNjQzODM2MywianRpIjoielBLaXRsNWJtQnAweG9ZUCIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.OIQ5CYr6C9JlWHQ9pdiKdFSXS2-xT9cdXQXUd9kyKA8",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/relatorio-entrada-saida",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"relatorio-entrada-saida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movimentação Estoque",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0NDQ3NjUsIm5iZiI6MTYxNjQ0NDc2NSwianRpIjoiOWh6Q2lESW0wVTRWb1FFNyIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.81hmpa94qm2nZh2yYQ2M2uwiGKSWPqoJ0XHOuq4S2UE",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/movimentacao-estoque?amount=0&type=S&product_id=25",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"movimentacao-estoque"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "0"
+								},
+								{
+									"key": "type",
+									"value": "S"
+								},
+								{
+									"key": "product_id",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Movimentação Estoque com quantidade em estoque menor do que o selecionado para retirada",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0NDQ3NjUsIm5iZiI6MTYxNjQ0NDc2NSwianRpIjoiOWh6Q2lESW0wVTRWb1FFNyIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.81hmpa94qm2nZh2yYQ2M2uwiGKSWPqoJ0XHOuq4S2UE",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/movimentacao-estoque?amount=4000&type=S&product_id=14",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"movimentacao-estoque"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "4000"
+										},
+										{
+											"key": "type",
+											"value": "S"
+										},
+										{
+											"key": "product_id",
+											"value": "14"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"error\": \"Quantidade insuficiente.\"\r\n}"
+						},
+						{
+							"name": "Movimentação Estoque",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0NDQ3NjUsIm5iZiI6MTYxNjQ0NDc2NSwianRpIjoiOWh6Q2lESW0wVTRWb1FFNyIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.81hmpa94qm2nZh2yYQ2M2uwiGKSWPqoJ0XHOuq4S2UE",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/movimentacao-estoque?amount=4&type=S&product_id=14",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"movimentacao-estoque"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "4"
+										},
+										{
+											"key": "type",
+											"value": "S"
+										},
+										{
+											"key": "product_id",
+											"value": "14"
+										}
+									]
+								}
+							},
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"type\": \"S\",\r\n    \"amount\": \"4\",\r\n    \"product_id\": \"14\",\r\n    \"updated_at\": \"2021-03-24T00:06:56.000000Z\",\r\n    \"created_at\": \"2021-03-24T00:06:56.000000Z\",\r\n    \"id\": 164\r\n}"
+						},
+						{
+							"name": "Movimentação Estoque com uma quantidade de entrada/saída igual a zero",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0NDQ3NjUsIm5iZiI6MTYxNjQ0NDc2NSwianRpIjoiOWh6Q2lESW0wVTRWb1FFNyIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.81hmpa94qm2nZh2yYQ2M2uwiGKSWPqoJ0XHOuq4S2UE",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/movimentacao-estoque?amount=0&type=S&product_id=25",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"movimentacao-estoque"
+									],
+									"query": [
+										{
+											"key": "amount",
+											"value": "0"
+										},
+										{
+											"key": "type",
+											"value": "S"
+										},
+										{
+											"key": "product_id",
+											"value": "25"
+										}
+									]
+								}
+							},
+							"code": 422,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"amount\":[\"The amount must be greater than 0.\"]}}"
+						}
+					]
+				},
+				{
+					"name": "Verifica a quantidade em estoque",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0NDQ3NjUsIm5iZiI6MTYxNjQ0NDc2NSwianRpIjoiOWh6Q2lESW0wVTRWb1FFNyIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.81hmpa94qm2nZh2yYQ2M2uwiGKSWPqoJ0XHOuq4S2UE",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/verifica-quantidade-estoque/13/",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"verifica-quantidade-estoque",
+								"13",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verifica a quantidade em estoque",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2F1dGgiLCJpYXQiOjE2MTY0NDQ3NjUsIm5iZiI6MTYxNjQ0NDc2NSwianRpIjoiOWh6Q2lESW0wVTRWb1FFNyIsInN1YiI6NTEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.81hmpa94qm2nZh2yYQ2M2uwiGKSWPqoJ0XHOuq4S2UE",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://laravel-web-service.local/api/verifica-quantidade-estoque/13/",
+									"protocol": "http",
+									"host": [
+										"laravel-web-service",
+										"local"
+									],
+									"path": [
+										"api",
+										"verifica-quantidade-estoque",
+										"13",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"amount\": 180\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Remover produto e os relatórios relacionados a ele",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLXdlYi1zZXJ2aWNlLmxvY2FsXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjE2NTQ1NTA1LCJuYmYiOjE2MTY1NDU1MDUsImp0aSI6Ilhlc3plQ0tQRnVodHBkWGsiLCJzdWIiOjUxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.x0EAa-MB6i7XMTcc0QD_M1SEI3kjL2V5dxNsxgAPqj0",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://laravel-web-service.local/api/remover-produto/25",
+							"protocol": "http",
+							"host": [
+								"laravel-web-service",
+								"local"
+							],
+							"path": [
+								"api",
+								"remover-produto",
+								"25"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "#Nome\n\nProduto\n\n#Descrição\n\nEstá pasta representa um objeto do tipo Produto na documentação da Api.\n\n#Campos\n\nObrigatórios:\nDescription\nBrand\nModel\nColor\nAmount\nSku\n\nObservação: A sku deve ser gerada a partir dos três primeiros caracteres do campo description + primeiro caractere do campo brand + dois primeiros caracteres do campo model + dois primeiros caracteres do campo color.\n\nExemplo: \nDescription: Notebook\nBrand: Dell\nModel: Alienware\nColor: Cinza\n\nNOT + D + AL + CI = NOTDALCI"
+		}
+	]
+}
