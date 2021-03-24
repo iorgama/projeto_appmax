@@ -36,7 +36,15 @@ const routes = [
                 path: "products/:id/edit",
                 component: AddProductsComponent,
                 name: "admin.products.edit",
-                props: true
+                props: true,
+                beforeEnter: (to, from, next) => {
+                    const id = to.params.id;
+                    if (store.getters.getProductById(id)) {
+                        next();
+                    } else {
+                        next({ name: "admin.products" });
+                    }
+                }
             },
             {
                 path: "products/:id/inventory",

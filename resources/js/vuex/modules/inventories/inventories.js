@@ -12,11 +12,7 @@ export default {
     actions: {
         async storeInventory(context, params) {
             try {
-                const response = await httpService.post(
-                    "/movimentacao-estoque",
-                    params
-                );
-                context.commit("SET_PRODUCTS", response.data);
+                await httpService.post("/movimentacao-estoque", params);
             } catch (error) {
                 const {
                     data: { message }

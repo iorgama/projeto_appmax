@@ -68,7 +68,10 @@ export default {
   computed:{
     description() {
       const product = this.$store.getters.getProductById(this.id);
-      return product.description + " da marca " + product.brand
+      if(product){
+        return product.description + " da marca " + product.brand
+      } 
+      return null;
     },
     amountProduct() {      
       return this.$store.state.inventories.amount

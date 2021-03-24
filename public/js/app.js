@@ -2097,7 +2097,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     description: function description() {
       var product = this.$store.getters.getProductById(this.id);
-      return product.description + " da marca " + product.brand;
+
+      if (product) {
+        return product.description + " da marca " + product.brand;
+      }
+
+      return null;
     },
     amountProduct: function amountProduct() {
       return this.$store.state.inventories.amount;
@@ -3113,7 +3118,18 @@ var routes = [{
     path: "products/:id/edit",
     component: _components_admin_pages_products_AddProductsComponent__WEBPACK_IMPORTED_MODULE_4__.default,
     name: "admin.products.edit",
-    props: true
+    props: true,
+    beforeEnter: function beforeEnter(to, from, next) {
+      var id = to.params.id;
+
+      if (_vuex_store__WEBPACK_IMPORTED_MODULE_0__.default.getters.getProductById(id)) {
+        next();
+      } else {
+        next({
+          name: "admin.products"
+        });
+      }
+    }
   }, {
     path: "products/:id/inventory",
     component: _components_admin_pages_inventories_InventoryProductComponent__WEBPACK_IMPORTED_MODULE_5__.default,
@@ -3419,7 +3435,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   actions: {
     storeInventory: function storeInventory(context, params) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response, message;
+        var message;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3429,18 +3445,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _services_httpService__WEBPACK_IMPORTED_MODULE_1__.default.post("/movimentacao-estoque", params);
 
               case 3:
-                response = _context.sent;
-                context.commit("SET_PRODUCTS", response.data);
-                _context.next = 13;
+                _context.next = 11;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 5:
+                _context.prev = 5;
                 _context.t0 = _context["catch"](0);
                 message = _context.t0.response.data.message;
 
                 if (!message) {
-                  _context.next = 12;
+                  _context.next = 10;
                   break;
                 }
 
@@ -3448,17 +3462,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   message: message
                 };
 
-              case 12:
+              case 10:
                 throw {
                   message: "Não foi possível alterar o estoque agora. Tente novamente em alguns instantes."
                 };
 
-              case 13:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, null, [[0, 5]]);
       }))();
     },
     amountProduct: function amountProduct(context, params) {
